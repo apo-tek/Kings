@@ -12,10 +12,13 @@ import java.util.Objects;
 
 public class Main extends JavaPlugin {
 
-    private static Main instance;
-    private boolean debug;
+    /*
+      This class contains the root of the Plugin
+     */
+    private static Main pluginInstance;
+    private boolean isDebug;
     private GameManager gameManager;
-    private Listener listener;
+    private Listener eventsListener;
     private PlayersManager playersManager;
     private States gameState;
 
@@ -23,11 +26,11 @@ public class Main extends JavaPlugin {
     @Override
     public void onEnable(){
         super.onEnable();
-        debug = true;
-        instance = this;
+        isDebug = true;
+        pluginInstance = this;
         sendLine(Constants.ENABLE_MESSAGE());
-        listener = new Listener();
-        getServer().getPluginManager().registerEvents(listener, this);
+        eventsListener = new Listener();
+        getServer().getPluginManager().registerEvents(eventsListener, this);
         playersManager = new PlayersManager();
         gameManager = new GameManager();
         Objects.requireNonNull(getCommand(Constants.PLAYERS_COMMAND_IDENTIFIER())).setExecutor(playersManager);
@@ -42,9 +45,9 @@ public class Main extends JavaPlugin {
         sendLine(Constants.DISABLE_MESSAGE());
     }
 
-    public static Main getInstance() {return instance;}
+    public static Main getPluginInstance() {return pluginInstance;}
 
-    public Listener getListener() {return listener;}
+    public Listener getEventsListener() {return eventsListener;}
 
     public PlayersManager getPlayersManager() {return playersManager;}
 
@@ -52,7 +55,7 @@ public class Main extends JavaPlugin {
 
     public void setGameState(States state){gameState = state;}
 
-    public boolean isDebug() {return debug;}
+    public boolean isDebug() {return isDebug;}
 
     public GameManager getGameManager() {return gameManager;}
 

@@ -19,8 +19,6 @@ import org.bukkit.event.inventory.*;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.util.Vector;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -30,7 +28,7 @@ import java.util.Objects;
 
 public class Listener implements org.bukkit.event.Listener {
 
-    private Main instance = Main.getInstance();
+    private Main instance = Main.getPluginInstance();
     private final ChatColor formatRed = ChatColor.RED;
     private final ChatColor formatBlue = ChatColor.BLUE;
     private final ChatColor formatGreen = ChatColor.GREEN;

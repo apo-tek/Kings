@@ -10,14 +10,13 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nullable;
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Map;
 
 
 public class GuiManager {
 
-    private final Main instance = Main.getInstance();
+    private final Main instance = Main.getPluginInstance();
     private PlayersManager playersManager = instance.getPlayersManager();
 
 

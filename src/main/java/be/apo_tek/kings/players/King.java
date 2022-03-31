@@ -20,7 +20,7 @@ public class King extends KingsPlayer{
     }
 
     public void suddenState(){
-        Preconditions.checkArgument(Main.getInstance().getGameState().equals(States.SUDDEN));
+        Preconditions.checkArgument(Main.getPluginInstance().getGameState().equals(States.SUDDEN));
         getSourcePlayer().addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, Integer.MAX_VALUE,
                 2,false, false, false));
         getSourcePlayer().addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, Integer.MAX_VALUE,
