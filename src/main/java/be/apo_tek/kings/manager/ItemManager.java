@@ -16,6 +16,8 @@ public class ItemManager {
         return itemStack;
     }
 
-
+    public static Component getDisplayName(ItemStack itemStack){
+        return itemStack.displayName();
+    }
 
 }
