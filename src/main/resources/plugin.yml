@@ -1,0 +1,9 @@
+name: Kings
+version: 0.1
+main: be.apo_tek.kings.Main
+authors:
+  - Apo_Tek
+description: Kings
+api-version: 1.18
+commands:
+  players:
