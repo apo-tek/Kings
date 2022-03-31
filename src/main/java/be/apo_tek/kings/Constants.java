@@ -21,11 +21,12 @@ public class Constants {
     public static boolean COPY_DEFAULT(){return true;}
     public static String ENABLE_MESSAGE(){return "§cEnabled";}
     public static String DISABLE_MESSAGE(){return "§cDisabled";}
+    public static String LOGIN_PASSED_MESSAGE(){return "LOGIN PASSED";}
     public static ChatColor FORMAT_RED() {return ChatColor.RED;}
     public static ChatColor FORMAT_BLUE() {return ChatColor.BLUE;}
     public static ChatColor FORMAT_GREEN() {return ChatColor.GREEN;}
     public static Material BREWING_STAND(){return Material.BREWING_STAND;}
-
+    public static String MAIN_MENU_NAME(){return FORMAT_RED() + "Menu Principal";}
 
     public static ItemStack TECHNOLOGICAL_GUI() {return ItemManager.createItem(BREWING_STAND(),
             Constants.FORMAT_BLUE() + TECHNOLOGICAL_NAME());}

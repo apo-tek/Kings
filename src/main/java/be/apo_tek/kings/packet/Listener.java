@@ -45,11 +45,9 @@ public class Listener implements org.bukkit.event.Listener {
     public void onJoinEvent(PlayerJoinEvent event){
         if(isDebug) {
             addLivePlayersHere(event.getPlayer());
-            sendTestLine("LOGIN PASSED");
+            sendTestLine(Constants.LOGIN_PASSED_MESSAGE());
             disableCooldown(event.getPlayer());
             giveMenuItem(event.getPlayer());
-            new King(event.getPlayer()).regenerate();
-            if(!kingsList.contains(event.getPlayer())) kingsList.add(event.getPlayer());
         }
     }
 
@@ -57,9 +55,9 @@ public class Listener implements org.bukkit.event.Listener {
     public void onDropEvent(PlayerDropItemEvent event) {
         if (isDebug) {
                 sendTestLine(event.getEventName());
-                boolean cancel = Objects.requireNonNull(event.getItemDrop().
-                                getItemStack().getItemMeta().displayName()).toString().
-                        equalsIgnoreCase(ChatColor.RED + "Menu principal");
+                boolean cancel =
+                        ItemManager.getDisplayName(event.getItemDrop()).toString().
+                        equalsIgnoreCase(Constants.MAIN_MENU_NAME());
                 event.setCancelled(cancel);
             }
         }
