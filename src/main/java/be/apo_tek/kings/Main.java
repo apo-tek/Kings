@@ -28,21 +28,21 @@ public class Main extends JavaPlugin {
         super.onEnable();
         isDebug = true;
         pluginInstance = this;
-        sendLine(Constants.ENABLE_MESSAGE());
+        sendLine(Constants.ENABLE_MESSAGE);
         eventsListener = new Listener();
         getServer().getPluginManager().registerEvents(eventsListener, this);
         playersManager = new PlayersManager();
         gameManager = new GameManager();
-        Objects.requireNonNull(getCommand(Constants.PLAYERS_COMMAND_IDENTIFIER())).setExecutor(playersManager);
-        getConfig().addDefault(Attribute.GENERIC_ATTACK_SPEED.name(), Constants.GENERIC_ATTACK_SPEED());
-        getConfig().options().copyDefaults(Constants.COPY_DEFAULT());
+        Objects.requireNonNull(getCommand(Constants.PLAYERS_COMMAND_IDENTIFIER)).setExecutor(playersManager);
+        getConfig().addDefault(Attribute.GENERIC_ATTACK_SPEED.name(), Constants.GENERIC_ATTACK_SPEED);
+        getConfig().options().copyDefaults(Constants.COPY_DEFAULT);
         saveConfig();
     }
 
     @Override
     public void onDisable(){
         super.onDisable();
-        sendLine(Constants.DISABLE_MESSAGE());
+        sendLine(Constants.DISABLE_MESSAGE);
     }
 
     public static Main getPluginInstance() {return pluginInstance;}

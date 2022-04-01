@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 
 public class Sender {
 
-    private Main instance = Main.getPluginInstance();
+    private final Main instance = Main.getPluginInstance();
 
     public Sender(Player player) {
 

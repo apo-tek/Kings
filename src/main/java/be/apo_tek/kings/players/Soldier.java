@@ -4,7 +4,9 @@ import org.bukkit.entity.Player;
 
 public class Soldier extends KingsPlayer{
 
-    public Soldier(Player player) {}
+    public Soldier(Player player) {
+        super(player);
+    }
 
 
 }

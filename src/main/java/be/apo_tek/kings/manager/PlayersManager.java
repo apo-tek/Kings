@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class PlayersManager implements CommandExecutor {
 
-    private ArrayList<Player> livePlayers = new ArrayList<>();
+    private final ArrayList<Player> livePlayers = new ArrayList<>();
 
 
     @Override

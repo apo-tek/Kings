@@ -17,15 +17,27 @@ import java.util.Map;
 public class GuiManager {
 
     private final Main instance = Main.getPluginInstance();
-    private PlayersManager playersManager = instance.getPlayersManager();
+    private final PlayersManager playersManager = instance.getPlayersManager();
 
 
-    public static void sendInventory(@Nullable InventoryHolder owner, InventoryType inventoryType, TextComponent title,
-                                     Map<ItemStack, Integer> items, ArrayList<Player> players){
-        Inventory inventory = Bukkit.createInventory(owner, inventoryType, title);
-        items.forEach((itemStack, integer) -> inventory.setItem(integer, itemStack));
-        players.forEach(player -> player.openInventory(inventory));
+    public static void sendInventory(@Nullable InventoryHolder inventoryHolder,
+                                     InventoryType inventoryType,
+                                     TextComponent titleComponent,
+                                     Map<ItemStack, Integer> itemsHeldInInventory,
+                                     ArrayList<Player> playersOpeningInventory){
+        Inventory sentInventory = Bukkit.createInventory(inventoryHolder, inventoryType, titleComponent);
+        itemsHeldInInventory.forEach((itemStack, integer) -> sentInventory.setItem(integer, itemStack));
+        playersOpeningInventory.forEach(player -> player.openInventory(sentInventory));
     }
 
+    public static void sendInventory(@Nullable InventoryHolder inventoryHolder,
+                                     InventoryType inventoryType,
+                                     TextComponent titleComponent,
+                                     Map<ItemStack, Integer> itemsHeldInInventory,
+                                     Player playerOpeningInventory) {
+        Inventory sentInventory = Bukkit.createInventory(inventoryHolder, inventoryType, titleComponent);
+        itemsHeldInInventory.forEach((itemStack, integer) -> sentInventory.setItem(integer, itemStack));
+        playerOpeningInventory.openInventory(sentInventory);
+    }
 
 }

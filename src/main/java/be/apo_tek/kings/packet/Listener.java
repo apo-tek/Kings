@@ -3,9 +3,9 @@ package be.apo_tek.kings.packet;
 import be.apo_tek.kings.Constants;
 import be.apo_tek.kings.Main;
 import be.apo_tek.kings.enums.States;
+import be.apo_tek.kings.manager.BlockManager;
 import be.apo_tek.kings.manager.GuiManager;
 import be.apo_tek.kings.manager.ItemManager;
-import be.apo_tek.kings.players.King;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -20,7 +20,6 @@ import org.bukkit.event.inventory.*;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.checkerframework.checker.units.qual.C;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -31,21 +30,20 @@ import java.util.Objects;
 public class Listener implements org.bukkit.event.Listener {
 
 
-    private Main pluginInstance = Main.getPluginInstance();
-    private boolean isDebug = pluginInstance.isDebug();
-    private List<Player> kingsList = new ArrayList<>();
+    private final Main pluginInstance = Main.getPluginInstance();
+    private final boolean isDebug = pluginInstance.isDebug();
+    private final List<Player> kingsList = new ArrayList<>();
 
-    private HashMap<ItemStack, Integer> technologyTree = new HashMap<>();
-    private HashMap<ItemStack, Integer> militaryTree = new HashMap<>();
-    private HashMap<ItemStack, Integer> agricultureTree = new HashMap<>();
-    private HashMap<ItemStack, Integer> items = new HashMap<>();
+    private final HashMap<ItemStack, Integer> technologyTree = new HashMap<>();
+    private final HashMap<ItemStack, Integer> militaryTree = new HashMap<>();
+    private final HashMap<ItemStack, Integer> agricultureTree = new HashMap<>();
 
 
     @EventHandler
     public void onJoinEvent(PlayerJoinEvent event){
         if(isDebug) {
             addLivePlayersHere(event.getPlayer());
-            sendTestLine(Constants.LOGIN_PASSED_MESSAGE());
+            sendTestLine(Constants.LOGIN_PASSED_MESSAGE);
             disableCooldown(event.getPlayer());
             giveMenuItem(event.getPlayer());
         }
@@ -57,7 +55,7 @@ public class Listener implements org.bukkit.event.Listener {
                 sendTestLine(event.getEventName());
                 boolean cancel =
                         ItemManager.getDisplayName(event.getItemDrop()).toString().
-                        equalsIgnoreCase(Constants.MAIN_MENU_NAME());
+                        equalsIgnoreCase(Constants.MAIN_MENU_NAME);
                 event.setCancelled(cancel);
             }
         }
@@ -73,18 +71,19 @@ public class Listener implements org.bukkit.event.Listener {
     @EventHandler
     public void onInteractBlockEvent(PlayerInteractEvent event){
         if(event.getClickedBlock() == null) return;
-        if(pluginInstance.getGameState() == States.PLAYING || pluginInstance.getGameState() == States.SUDDEN
+        if(pluginInstance.getGameState() == States.PLAYING
+                || pluginInstance.getGameState() == States.SUDDEN
                 && event.getAction().isRightClick()
-                && Objects.requireNonNull(event.getClickedBlock()).getType().equals(Material.LECTERN)){
+                && BlockManager.getItemType(event.getClickedBlock()) == Material.LECTERN){
 
 
-            items.put(Constants.TECHNOLOGICAL_GUI(), 0);
-            items.put(Constants.MILITARY_GUI(), 2);
-            items.put(Constants.FARM_GUI(), 4);
-            ArrayList<Player> players = new ArrayList<>();
-            players.add(event.getPlayer());
+            HashMap<ItemStack, Integer> items = new HashMap<>();
+            items.put(Constants.TECHNOLOGICAL_GUI, 0);
+            items.put(Constants.MILITARY_GUI, 2);
+            items.put(Constants.FARMING_GUI, 4);
 
-            GuiManager.sendInventory(null, InventoryType.HOPPER, Component.text("Terminal Royal"), items, players);
+            GuiManager.sendInventory(null,
+                    InventoryType.HOPPER, Component.text(Constants.ROYAL_MENU_NAME), items, event.getPlayer());
         }
     }
 
@@ -95,21 +94,21 @@ public class Listener implements org.bukkit.event.Listener {
                 || event.getCurrentItem().getItemMeta() == null) return;
         if (Objects.equals
                 (ItemManager.getDisplayName(event.getCurrentItem()),
-                        Constants.GET_TECHNOLOGICAL_GUI_NAME())
+                        Constants.GET_TECHNOLOGICAL_GUI_NAME)
                 || Objects.equals(ItemManager.getDisplayName(event.getCurrentItem()),
-                Constants.GET_FARM_GUI_NAME())
+                Constants.GET_FARMING_GUI_NAME)
                 || Objects.equals(ItemManager.getDisplayName(event.getCurrentItem()),
-                Constants.GET_MILITARY_GUI_NAME())){
+                Constants.GET_MILITARY_GUI_NAME)){
             event.setCancelled(true);
             firstLayerKingGui(event);
         }
         if(Objects.equals
                 (ItemManager.getDisplayName(event.getCurrentItem()),
-                        Constants.GET_TECHNOLOGICAL_GUI_NAME())
+                        Constants.GET_TECHNOLOGICAL_GUI_NAME)
                 || Objects.equals(ItemManager.getDisplayName(event.getCurrentItem()),
-                Constants.GET_FARM_GUI_NAME())
+                Constants.GET_FARMING_GUI_NAME)
                 || Objects.equals(ItemManager.getDisplayName(event.getCurrentItem()),
-                Constants.GET_MILITARY_GUI_NAME())){
+                Constants.GET_MILITARY_GUI_NAME)){
             event.setCancelled(true);
         }
     }
@@ -167,15 +166,15 @@ public class Listener implements org.bukkit.event.Listener {
     }
 
     public void sendTestLineServer(@NotNull String message){
-        Bukkit.getConsoleSender().sendMessage(Constants.FORMAT_GREEN() + message);
+        Bukkit.getConsoleSender().sendMessage(Constants.FORMAT_GREEN + message);
     }
 
     public void sendTestLineClient(@NotNull String message){
-        Bukkit.getConsoleSender().sendMessage(Constants.FORMAT_BLUE() + message);
+        Bukkit.getConsoleSender().sendMessage(Constants.FORMAT_BLUE + message);
     }
 
     public void sendTestLine(@NotNull String message){
-        Bukkit.getConsoleSender().sendMessage(Constants.FORMAT_RED() + message);
+        Bukkit.getConsoleSender().sendMessage(Constants.FORMAT_RED + message);
     }
 
 
@@ -194,7 +193,7 @@ public class Listener implements org.bukkit.event.Listener {
     public void giveMenuItem(@NotNull Player player){
         ItemStack menu = new ItemStack(Material.COMPARATOR);
         ItemMeta menuMeta = menu.getItemMeta();
-        menuMeta.displayName(Component.text(ChatColor.RED + "Menu principal"));
+        menuMeta.displayName(Component.text(Constants.MAIN_MENU_NAME));
         menu.setItemMeta(menuMeta);
         player.getInventory().clear();
         player.getInventory().setItem(4, menu);
@@ -204,9 +203,9 @@ public class Listener implements org.bukkit.event.Listener {
         ArrayList<Player> players = new ArrayList<>();
         players.add((Player) event.getWhoClicked());
 
-        technologyTree.put(Constants.GET_TECHNOLOGICAL_GUI(), 4);
-        militaryTree.put(Constants.GET_MILITARY_GUI(), 4);
-        agricultureTree.put(Constants.GET_FARM_GUI(), 4);
+        technologyTree.put(Constants.GET_TECHNOLOGICAL_GUI, 4);
+        militaryTree.put(Constants.GET_MILITARY_GUI, 4);
+        agricultureTree.put(Constants.GET_FARMING_GUI, 4);
 
 
 
@@ -214,13 +213,13 @@ public class Listener implements org.bukkit.event.Listener {
         switch (Objects.requireNonNull(event.getCurrentItem()).getType().toString().toUpperCase()){
             case "BREWING_STAND" ->
                     GuiManager.sendInventory(null, InventoryType.BREWING,
-                             Component.text("Technology"), technologyTree, players);
+                             Component.text(Constants.TECHNOLOGICAL_NAME), technologyTree, players);
             case "IRON_SWORD" ->
                     GuiManager.sendInventory(null, InventoryType.BREWING,
-                            Component.text("Military"), militaryTree, players);
+                            Component.text(Constants.MILITARY_NAME), militaryTree, players);
             case "WHEAT" ->
                     GuiManager.sendInventory(null, InventoryType.BREWING,
-                            Component.text("Agriculture"), agricultureTree, players);
+                            Component.text(Constants.FARMING_NAME), agricultureTree, players);
         }
     }
 

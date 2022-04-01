@@ -4,7 +4,9 @@ import org.bukkit.entity.Player;
 
 public class Scientist extends KingsPlayer{
 
-    public Scientist(Player player) {}
+    public Scientist(Player player) {
+        super(player);
+    }
 
 
 }
