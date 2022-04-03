@@ -29,6 +29,9 @@ public class Constants {
     public static final @NotNull Material BREWING_STAND = Material.BREWING_STAND;
     public static final @NotNull String MAIN_MENU_NAME = FORMAT_RED + "Main Menu";
     public static final @NotNull String ROYAL_MENU_NAME = "Royal Terminal";
+    public static final @NotNull String OPEN_NAME = "open";
+    public static final @NotNull String CLOSE_NAME = "close";
+    public static final @NotNull String NO_GAME_WAITING = "There's no game to start !";
     public static final @NotNull ItemStack TECHNOLOGICAL_GUI = ItemManager.createItem(BREWING_STAND,
             FORMAT_BLUE + TECHNOLOGICAL_NAME);
     public static final @NotNull ItemStack MILITARY_GUI = ItemManager.createItem(Material.IRON_SWORD,

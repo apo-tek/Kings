@@ -191,7 +191,7 @@ public class Listener implements org.bukkit.event.Listener {
     }
 
     public void giveMenuItem(@NotNull Player player){
-        ItemStack menu = new ItemStack(Material.COMPARATOR);
+        ItemStack menu = Constants.GET_TECHNOLOGICAL_GUI.clone();
         ItemMeta menuMeta = menu.getItemMeta();
         menuMeta.displayName(Component.text(Constants.MAIN_MENU_NAME));
         menu.setItemMeta(menuMeta);

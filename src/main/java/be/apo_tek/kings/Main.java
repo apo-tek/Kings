@@ -1,7 +1,7 @@
 package be.apo_tek.kings;
 
 import be.apo_tek.kings.enums.States;
-import be.apo_tek.kings.game.GameManager;
+import be.apo_tek.kings.manager.GameManager;
 import be.apo_tek.kings.manager.PlayersManager;
 import be.apo_tek.kings.packet.Listener;
 import org.bukkit.Bukkit;

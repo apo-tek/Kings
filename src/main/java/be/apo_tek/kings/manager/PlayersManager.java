@@ -1,5 +1,7 @@
 package be.apo_tek.kings.manager;
 
+import be.apo_tek.kings.Constants;
+import be.apo_tek.kings.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -9,6 +11,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 
 public class PlayersManager implements CommandExecutor {
+
+    private final Main pluginInstance = Main.getPluginInstance();
 
     private final ArrayList<Player> livePlayers = new ArrayList<>();
 
@@ -21,6 +25,13 @@ public class PlayersManager implements CommandExecutor {
                 case "players" -> {
                     retrieveLivePlayers().forEach(player -> Bukkit.getServer().sendMessage(player.name()));
                     return true;
+                }
+                case "h" -> {
+                    switch (strings[0]) {
+                        case "start" -> {
+                            if(GameManager.getGamesList().isEmpty()) pluginInstance.sendLine(Constants.NO_GAME_WAITING);
+                        }
+                    }
                 }
             }
 
