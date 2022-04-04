@@ -1,4 +1,4 @@
-package be.apo_tek.kings.packet;
+package be.apo_tek.kings.io;
 
 import be.apo_tek.kings.Main;
 import org.bukkit.entity.Player;

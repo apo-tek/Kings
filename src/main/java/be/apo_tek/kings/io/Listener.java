@@ -1,4 +1,4 @@
-package be.apo_tek.kings.packet;
+package be.apo_tek.kings.io;
 
 import be.apo_tek.kings.Constants;
 import be.apo_tek.kings.Main;
@@ -9,7 +9,6 @@ import be.apo_tek.kings.manager.ItemManager;
 import be.apo_tek.kings.players.KingsPlayer;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;

@@ -3,7 +3,7 @@ package be.apo_tek.kings;
 import be.apo_tek.kings.enums.States;
 import be.apo_tek.kings.manager.GameManager;
 import be.apo_tek.kings.manager.PlayersManager;
-import be.apo_tek.kings.packet.Listener;
+import be.apo_tek.kings.io.Listener;
 import org.bukkit.Bukkit;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.plugin.java.JavaPlugin;
