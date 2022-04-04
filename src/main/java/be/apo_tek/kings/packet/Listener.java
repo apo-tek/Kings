@@ -6,6 +6,7 @@ import be.apo_tek.kings.enums.States;
 import be.apo_tek.kings.manager.BlockManager;
 import be.apo_tek.kings.manager.GuiManager;
 import be.apo_tek.kings.manager.ItemManager;
+import be.apo_tek.kings.players.KingsPlayer;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -42,10 +43,13 @@ public class Listener implements org.bukkit.event.Listener {
     @EventHandler
     public void onJoinEvent(PlayerJoinEvent event){
         if(isDebug) {
-            addLivePlayersHere(event.getPlayer());
+            Player p = event.getPlayer();
+            KingsPlayer kp = new KingsPlayer(p);
+            addLivePlayersHere(p);
             sendTestLine(Constants.LOGIN_PASSED_MESSAGE);
-            disableCooldown(event.getPlayer());
-            giveMenuItem(event.getPlayer());
+            disableCooldown(p);
+            giveMenuItem(p);
+            kp.removePotionEffects();
         }
     }
 

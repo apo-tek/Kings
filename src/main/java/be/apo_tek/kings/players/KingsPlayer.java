@@ -9,28 +9,22 @@ public class KingsPlayer {
     private int kingsPlayerLevel;
 
 
-    protected KingsPlayer(Player sourcePlayer){
+    public KingsPlayer(Player sourcePlayer){
         kingsPlayerSource = sourcePlayer;
     }
 
-    protected Player getSourcePlayer() {
-        return kingsPlayerSource;
-    }
+    public Player getSourcePlayer() {return kingsPlayerSource;}
 
-    protected boolean isKingsPlayerDead() {
-        return kingsPlayerLiving;
-    }
+    public boolean isKingsPlayerDead() {return kingsPlayerLiving;}
 
-    protected void setKingsPlayerDead(boolean living) {
-        kingsPlayerLiving = living;
-    }
+    public void setKingsPlayerDead(boolean living) {kingsPlayerLiving = living;}
 
-    protected int getKingsPlayerLevel() {
-        return kingsPlayerLevel;
-    }
+    public int getKingsPlayerLevel() {return kingsPlayerLevel;}
 
-    protected void setKingsPlayerLevel(int level) {
-        kingsPlayerLevel = level;
-    }
+    public void setKingsPlayerLevel(int level) {kingsPlayerLevel = level;}
 
+    public void removePotionEffects(){
+        getSourcePlayer().getActivePotionEffects().forEach(potionEffect ->
+                getSourcePlayer().removePotionEffect(potionEffect.getType()));
+    }
 }
