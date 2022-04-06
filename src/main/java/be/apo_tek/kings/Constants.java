@@ -16,6 +16,7 @@ public class Constants {
 
     public static final @NotNull Integer GENERIC_ATTACK_SPEED = 24;
     public static final @NotNull String PLAYERS_COMMAND_IDENTIFIER = "players";
+    public static final @NotNull String GAME_COMMAND_IDENTIFIER = "game";
     public static final @NotNull String TECHNOLOGICAL_NAME = "Technology";
     public static final @NotNull String MILITARY_NAME = "Military";
     public static final @NotNull String FARMING_NAME = "Agriculture";

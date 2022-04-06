@@ -3,13 +3,16 @@ package be.apo_tek.kings.manager;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 
 
-public class ItemManager {
+public class ItemManager implements CommandExecutor {
 
     public static @NotNull ItemStack createItem(Material material, String displayName){
         ItemStack itemStack = new ItemStack(material);
@@ -28,4 +31,8 @@ public class ItemManager {
     }
 
 
+    @Override
+    public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
+        return false;
+    }
 }

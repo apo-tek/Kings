@@ -7,3 +7,5 @@ description: Kings
 api-version: 1.18
 commands:
   players:
+  game:
+    aliases: [g, h, host]

@@ -20,27 +20,15 @@ public class PlayersManager implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s,
                              @NotNull String[] strings) {
-        if(commandSender instanceof Player){
-            switch (s) {
-                case "players" -> {
-                    retrieveLivePlayers().forEach(player -> Bukkit.getServer().sendMessage(player.name()));
-                    return true;
-                }
-                case "h" -> {
-                    switch (strings[0]) {
-                        case "start" -> {
-                            if(GameManager.getGamesList().isEmpty()) pluginInstance.sendLine(Constants.NO_GAME_WAITING);
-                        }
-                    }
-                }
-            }
-
-        }
-        return false;
+        if(!(commandSender instanceof Player)) return false;
+        if (!"players".equals(s)) return false;
+        retrieveLivePlayers().forEach(player -> Bukkit.getServer().sendMessage(player.name()));
+        return true;
     }
 
     public void addLivePlayers(Player player){
-        if(!livePlayers.contains(player)) livePlayers.add(player);
+        if(livePlayers.contains(player)) return;
+        livePlayers.add(player);
     }
 
     public ArrayList<Player> retrieveLivePlayers(){

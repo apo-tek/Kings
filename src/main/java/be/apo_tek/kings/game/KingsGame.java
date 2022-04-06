@@ -3,6 +3,7 @@ package be.apo_tek.kings.game;
 import be.apo_tek.kings.Constants;
 import be.apo_tek.kings.enums.States;
 import be.apo_tek.kings.interfaces.Joinable;
+import be.apo_tek.kings.manager.GameManager;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
@@ -16,13 +17,17 @@ public class KingsGame implements Joinable {
     protected Boolean openState;
 
 
-    public KingsGame(){
+    private KingsGame(){
         setGameID("KINGS-" + UUID.randomUUID());
         initGame();
         openOrCloseGame(Constants.CLOSE_NAME);
-
     }
 
+    public KingsGame createGame(){
+        KingsGame kingsGame = new KingsGame();
+        GameManager.addGameToList(kingsGame);
+        return kingsGame;
+    }
     public void initGame(){setState(States.WAITING);}
 
     public void startGame(){setState(States.PLAYING);}
