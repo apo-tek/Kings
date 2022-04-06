@@ -74,7 +74,8 @@ public class Listener implements org.bukkit.event.Listener {
     @EventHandler
     public void onInteractBlockEvent(PlayerInteractEvent event){
         if(event.getClickedBlock() == null) return;
-        if(pluginInstance.getGameState() == States.PLAYING
+/*
+        if(pluginInstance..getGameState() == States.PLAYING
                 || pluginInstance.getGameState() == States.SUDDEN
                 && event.getAction().isRightClick()
                 && BlockManager.getItemType(event.getClickedBlock()) == Material.LECTERN){
@@ -88,6 +89,7 @@ public class Listener implements org.bukkit.event.Listener {
             GuiManager.sendInventory(null,
                     InventoryType.HOPPER, Component.text(Constants.ROYAL_MENU_NAME), items, event.getPlayer());
         }
+ */
     }
 
     @EventHandler
@@ -182,7 +184,7 @@ public class Listener implements org.bukkit.event.Listener {
 
 
     public void addLivePlayersHere(@NotNull Player player){
-        pluginInstance.getPlayersManager().addLivePlayers(player);
+        //pluginInstance.getPlayersManager().addLivePlayers(player);
     }
 
     public void disableCooldown(@NotNull Player player){

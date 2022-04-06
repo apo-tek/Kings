@@ -17,7 +17,7 @@ import java.util.Map;
 public class GuiManager {
 
     private final Main instance = Main.getPluginInstance();
-    private final PlayersManager playersManager = instance.getPlayersManager();
+    //private final PlayersManager playersManager = instance.getPlayersManager();
 
 
     public static void sendInventory(@Nullable InventoryHolder inventoryHolder,
